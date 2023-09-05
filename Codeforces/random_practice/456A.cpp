@@ -30,6 +30,4 @@ int main() {
     }
 
     cout << "Poor Alex\n";
-
-
 }
