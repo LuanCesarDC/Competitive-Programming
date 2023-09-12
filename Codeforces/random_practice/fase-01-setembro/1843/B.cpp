@@ -8,23 +8,28 @@ typedef long long ll;
 void solve() {
     ll n; cin >> n;
     vector<ll>v(n);
-    ll negativo = 0, positivo = 0;
-    cin >> v[0];
-    bool pos = false;
-    if(v[0] < 0) {
-        pos = false;
-        negativo++;
-    } else if(v[0] > 0){
-        pos = true;
-        positivo++;
-    }
-    for(int i=1;i<n;i++) {
+    ll negativo = 0, positivo = 0, sum = 0;
+    int pos = -1;
+    for(int i=0;i<n;i++) {
         cin >> v[i];
-        if(v[i-1]*v[i] < 0) {
-            
+        sum += llabs(v[i]);
+        if(v[i] < 0) {
+            if(pos == 0 || pos == -1) {
+                pos = 1;
+                negativo++;
+            }
+        } else if(v[i] > 0) {
+            if(pos == 1 || pos == -1) {
+                pos = 0;
+                positivo++;
+            }
         }
     }
-
+    if(positivo >= negativo) {
+        cout << sum << " " << negativo << "\n";
+    } else {
+        cout << sum << " " << positivo + 1 << "\n";
+    }
 }
 
 int main() {
