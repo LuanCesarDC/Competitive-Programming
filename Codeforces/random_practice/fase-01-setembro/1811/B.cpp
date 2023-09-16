@@ -5,15 +5,11 @@ using namespace std;
 typedef long long ll;
 
 ll calculaFaixa(ll n, ll x, ll y) {
-    if(y >= x && x+y <= n+1) {
-        return x;
-    } else if(y >= x && x+y < n+1) {
-        return n-x+1;
-    } else if(y < x && x+y <= n+1) {
-        return n-y+1;
-    } else {
-        return y;
-    }
+    if(x > n/2) x = n+1-x;
+    if(y < x) return y;
+    if(y >= x && y <= n+1-x) return x;
+    if(y > n/2) return n+1-y;
+    else return y;
 }
 
 int main() {
